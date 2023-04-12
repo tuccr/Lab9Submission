@@ -13,14 +13,13 @@ struct RecordType
 // Fill out this structure
 struct HashType
 {
-	// int size; not using this because we have consistent variable in functions named tableSize, hashTableSize, etc.
     struct RecordType ** records;
 };
 
 // Compute the hash function
 int hash(int x, int tableSize)
 {
-    return (x % tableSize); // hash is x % tableSize
+    return (x % tableSize);
 }
 
 // parses input file to an integer array
@@ -88,11 +87,6 @@ void insertRecord(struct HashType *hashTable, struct RecordType *record, int tab
 		}
 		current->next = record;
 	}
-	// set record index to hash function calculation
-    // if the RecordType at that index is NULL
-        // set 'record' equal to the HashType pointer in the table at index
-    // else
-        // traverse to the end of the linkedlist and add 'record' to the end of it
 }
 
 // display records in the hash structure
@@ -113,9 +107,6 @@ void displayRecordsInHash(struct HashType *hashTable, int tableSize)
 			printf("NULL\n");
 		}
 	}
-    // for each entry in the table
-        // print the contents in that index
-        // The output should look like this (for example): "Index 1 -> 21715, Q, 16 -> 28876, a, 26 -> NULL"
 }
 
 int main(void)
@@ -126,10 +117,12 @@ int main(void)
     recordSz = parseData("input.txt", &pRecords);
     printRecords(pRecords, recordSz);
 
+	// This block is if you want to try variable hashTableSize via user input
 	//int hashTableSize;
 	//printf("hashTableSize = ");
 	//scanf("%d", &hashTableSize);
 	//printf("\n");
+
 	int hashTableSize = 30;
 
 	struct HashType * hashTable = (struct HashType *)malloc(sizeof(struct HashType));
@@ -138,15 +131,6 @@ int main(void)
 		insertRecord(hashTable, &pRecords[j], hashTableSize);
 	}
 	displayRecordsInHash(hashTable, hashTableSize);
-
-    // Initialize the hash table
-    // create a variable hashTableSize and assign it a value
-    // initialize a hashTable, use calloc (so everything is assigned to NULL)
-    // for each record in pRecords, insert it into the hash table using the insertRecord function
-    // call the display records function
-    // free all the allocated memory
-
-	
 
 	free(hashTable->records);
 	free(hashTable);
