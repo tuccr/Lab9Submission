@@ -125,15 +125,15 @@ int main(void)
 
 	int hashTableSize = 30;
 
-	struct HashType * hashTable = (struct HashType *)malloc(sizeof(struct HashType));
-	hashTable->records = (struct RecordType **)calloc(hashTableSize, sizeof(struct RecordType *));
-	for(int j = 0; j < recordSz; j++) {
-		insertRecord(hashTable, &pRecords[j], hashTableSize);
-	}
-	displayRecordsInHash(hashTable, hashTableSize);
-
-	free(hashTable->records);
-	free(hashTable);
+    struct HashType * hashTable = (struct HashType *)malloc(sizeof(struct HashType));
+    hashTable->records = (struct RecordType **)calloc(hashTableSize, sizeof(struct RecordType *));
+    for(int j = 0; j < recordSz; j++) {
+    	insertRecord(hashTable, &pRecords[j], hashTableSize);
+    }
+    displayRecordsInHash(hashTable, hashTableSize);
+    
+    free(hashTable->records);
+    free(hashTable);
     free(pRecords);
 
     return 0;
